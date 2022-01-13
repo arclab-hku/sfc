@@ -112,7 +112,7 @@ protected:
      Vs.add(Plane3D(Vec3f(global_bbox_min_(0), 0, 0), Vec3f(-1, 0, 0)));
      //*** Y
      Vs.add(Plane3D(Vec3f(0, global_bbox_max_(1), 0), Vec3f(0, 1, 0)));
-     Vs.add(Plane3D(Vec3f(0, global_bbox_max_(1), 0), Vec3f(0, -1, 0)));
+     Vs.add(Plane3D(Vec3f(0, global_bbox_min_(1), 0), Vec3f(0, -1, 0)));
    }
 
  vec_Vecf<Dim> path_;
