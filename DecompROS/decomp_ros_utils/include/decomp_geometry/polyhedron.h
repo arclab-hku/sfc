@@ -51,9 +51,9 @@ struct Polyhedron {
   }
 
   /// Check if the point is inside polyhedron, non-exclusive
-  bool inside(const Vecf<Dim>& pt) const {
+  bool inside(const Vecf<Dim>& pt, const double safe_r=0.0) const {
     for (const auto& v : vs_) {
-      if (v.signed_dist(pt) > epsilon_) {
+      if (v.signed_dist(pt) > epsilon_ - safe_r) {
         //printf("rejected pt: (%f, %f), d: %f\n",pt(0), pt(1), v.signed_dist(pt));
         return false;
       }
@@ -130,7 +130,7 @@ struct LinearConstraint {
   bool inside(const Vecf<Dim> &pt) {
     VecDf d = A_ * pt - b_;
     for (unsigned int i = 0; i < d.rows(); i++) {
-      if (d(i) > 0)
+      if (d(i) > 0.0)
         return false;
     }
     return true;
